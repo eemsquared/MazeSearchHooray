@@ -36,6 +36,10 @@ public class Square {
             this.cost = 0;
     }
 
+    public ArrayList<Square> getNeighbors(){
+        return neighbors;
+    }
+
     public void setTotalCost(int totalCost){
         this.totalCost = totalCost;
     }
