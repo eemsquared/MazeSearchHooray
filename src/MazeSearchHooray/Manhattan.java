@@ -130,10 +130,77 @@ public class Manhattan {
                 openList.add(square);
             }
             //DIAGONAL UPPER LEFT
+            if (partial[curX-1][curY-1] != '%'){
+                Square square = new Square(curX-1, curY-1, currentSquare, currentSquare.getCost()+10);
+                //find distance cost
+                square.setTotalCost(square.getCost()+findDistanceCost(curX-1,curY-1));
+                currentSquare.addNeighbor(square);
+                openList.add(square);
+            }
+            //DIAGONAL UPPER RIGHT
+            if (partial[curX+1][curY-1] != '%'){
+                Square square = new Square(curX+1, curY-1, currentSquare, currentSquare.getCost()+10);
+                //find distance cost
+                square.setTotalCost(square.getCost()+findDistanceCost(curX+1,curY-1));
+                currentSquare.addNeighbor(square);
+                openList.add(square);
+            }
+            //DIAGONAL LOWER LEFT
+
+            if (partial[curX-1][curY+1] != '%'){
+                Square square = new Square(curX-1, curY+1, currentSquare, currentSquare.getCost()+10);
+                //find distance cost
+                square.setTotalCost(square.getCost()+findDistanceCost(curX-1,curY+1));
+                currentSquare.addNeighbor(square);
+                openList.add(square);
+            }
+            //DIAGONAL LOWER RIGHT
+
+            if (partial[curX+1][curY+1] != '%'){
+                Square square = new Square(curX+1, curY+1, currentSquare, currentSquare.getCost()+10);
+                //find distance cost
+                square.setTotalCost(square.getCost()+findDistanceCost(curX+1,curY+1));
+                currentSquare.addNeighbor(square);
+                openList.add(square);
+            }
+
+
+            //CHECK CLOSED LIST
+
+            if (!(closedList.contains(currentSquare))){
+                closedList.add(currentSquare);
+            }
+            //FIND WHICH NEIGHBOR IS THE LEAST NGA COST
+            //IF SAME COST, ALPHABETIZE OR NUMERICAL SORT
+            //THEN CHANGE THE CURRENT SQUARE
+
+            currentSquare = findNextCurrent(currentSquare);
+
+            //CHECK OPEN LIST
+
+            openList.remove(currentSquare);
+
+            //CHECK PARENT LIST
 
         }
 
 
+    }
+
+    public Square findNextCurrent(Square current){
+        Square next = current.getNeighbors().get(0);
+        for (Square s: current.getNeighbors()){
+            if (openList.contains(s)){
+                if (next.getTotalCost() > s.getTotalCost()){
+                    next = s;
+                }else if (next.getTotalCost() == s.getTotalCost()){
+                    if (s.getY() < next.getY()){
+                        next = s;
+                    }
+                }
+            }
+        }
+        return next;
     }
 
     public int findDistanceCost(int curX, int curY){
