@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class SearchMaze {
+public class Maze {
 	private String filename;
 	private char [][] arrayMaze = null;
 	private ArrayList<String> list = new ArrayList<String>();
@@ -57,6 +57,10 @@ public class SearchMaze {
 	
 	public int getRowSize(){
 		return rowSize;
+	}
+
+	public char [][] getArrayMaze(){
+		return arrayMaze;
 	}
 	
 }

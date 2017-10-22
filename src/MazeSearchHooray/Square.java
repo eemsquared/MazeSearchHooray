@@ -1,41 +1,52 @@
 package MazeSearchHooray;
 
-import javafx.scene.Parent;
-
 import java.util.ArrayList;
 
 public class Square {
 
-    private int x;
-    private int y;
-    private int cost;
+    private int roww;
+    private int coll;
+    private int gCost;
+    private int hCost;
     private int totalCost;
     private Square parent;
     private ArrayList<Square> neighbors;
 
     public Square(){
         //constructor
-        x = 0;
-        y = 0;
-        cost = 0;
+        roww = 0;
+        coll = 0;
+        gCost = 0;
+        hCost = 0;
         totalCost = 0;
         parent = null;
         neighbors = null;
     }
 
-    public Square(int x, int y, Square parent, int partialCost){
+    public Square(int x, int y, Square parent, int gCost, int hCost, int totalCost){
         //location
-        this.x = x;
-        this.y = y;
+        this.roww = x;
+        this.coll = y;
         //parent
         this.parent = parent;
         //cost
+        this.gCost = gCost;
+        this.hCost = hCost;
+        this.totalCost = totalCost;
+        /*
         if (parent != null)
-            this.cost = parent.getCost() + partialCost;
+            this.gCost = parent.getgCost() + partialCost;
         else
-            this.cost = 0;
+            this.gCost = 0;
+        */
     }
 
+    public void printStats(){
+        System.out.println("Row: "+roww+"\nColumn: "+coll+"\nG(x): "+gCost+"\nH(x): "+hCost+"\nTotal Cost: "+totalCost);
+        if (parent != null){
+            System.out.println("Parent: "+parent.getRoww()+", "+parent.getColl());
+        }
+    }
     public ArrayList<Square> getNeighbors(){
         return neighbors;
     }
@@ -44,28 +55,28 @@ public class Square {
         this.totalCost = totalCost;
     }
 
-    public void setX(int x){
-        this.x = x;
+    public void setRoww(int roww){
+        this.roww = roww;
     }
 
-    public void setY(int y){
-        this.y = y;
+    public void setColl(int coll){
+        this.coll = coll;
     }
 
     public void setParent(Square parent){
         this.parent = parent;
     }
 
-    public int getX(){
-        return x;
+    public int getRoww(){
+        return roww;
     }
 
-    public int getY(){
-        return y;
+    public int getColl(){
+        return coll;
     }
 
-    public int getCost(){
-        return cost;
+    public int getgCost(){
+        return gCost;
     }
 
     public int getTotalCost(){
