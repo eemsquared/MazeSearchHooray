@@ -10,7 +10,7 @@ public class Square {
     private int hCost;
     private int totalCost;
     private Square parent;
-    private ArrayList<Square> neighbors;
+    private ArrayList<Square> neighbors = new ArrayList<>();
 
     public Square(){
         //constructor
@@ -20,7 +20,6 @@ public class Square {
         hCost = 0;
         totalCost = 0;
         parent = null;
-        neighbors = null;
     }
 
     public Square(int x, int y, Square parent, int gCost, int hCost, int totalCost){
