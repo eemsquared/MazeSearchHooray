@@ -258,6 +258,8 @@ public class Process {
     }
 
     public int findHCost(int row, int col){
+        //abs(row index of start location - row index of goal) + abs(column index of starting - column of goal)
+
         return Math.abs((row - end.getRoww())+ (col - end.getColl())) * 10;
     }
 }
