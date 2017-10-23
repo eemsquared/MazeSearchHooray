@@ -171,7 +171,7 @@ public class Manhattan {
         }
     }
 
-    public int findHCost(int row, int col){
+    private int findHCost(int row, int col){
         return Math.abs(row - goal.getRow()) + Math.abs(col - goal.getCol());
     }
 

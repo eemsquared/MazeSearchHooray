@@ -75,13 +75,7 @@ public class StraightLine {
     public void findNeighbors() {
         closedList.add(current);
         openList.remove(current);
-        //int index = 0;
-        /*for (Square sq: openList){
-            if (sq.getRow() == current.getRow() && sq.getCol() == current.getCol()){
-                openList.remove(index);
-            }
-            index++;
-        }*/
+
         //UP
         if (maze[current.getRow() - 1][current.getCol()] != '%') {
             //check closedlist
@@ -171,7 +165,7 @@ public class StraightLine {
         }
     }
 
-    public int findHCost(int row, int col) {
+    private int findHCost(int row, int col) {
         int dx;
         int dy;
 
