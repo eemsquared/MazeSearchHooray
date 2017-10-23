@@ -66,7 +66,7 @@ public class Process {
             int totalCost = gCost + hCost;
             Square square = new Square(currentRow - 1, currentColumn, currentSquare, gCost, hCost, totalCost);
 
-            if (closedList.contains(square) == false){
+            if (closedList.contains(square) == false && openList.contains(square) == false){
                 currentSquare.addNeighbor(square);
                 openList.add(square);
             }
@@ -79,7 +79,7 @@ public class Process {
             int totalCost = gCost + hCost;
             Square square = new Square(currentRow + 1, currentColumn, currentSquare, gCost, hCost, totalCost);
 
-            if (closedList.contains(square) == false){
+            if (closedList.contains(square) == false && openList.contains(square) == false){
                 currentSquare.addNeighbor(square);
                 openList.add(square);
             }
@@ -92,7 +92,7 @@ public class Process {
             int totalCost = gCost + hCost;
             Square square = new Square(currentRow, currentColumn-1, currentSquare, gCost, hCost, totalCost);
 
-            if (closedList.contains(square) == false){
+            if (closedList.contains(square) == false && openList.contains(square) == false){
                 currentSquare.addNeighbor(square);
                 openList.add(square);
             }
@@ -105,7 +105,7 @@ public class Process {
             int totalCost = gCost + hCost;
             Square square = new Square(currentRow, currentColumn + 1, currentSquare, gCost, hCost, totalCost);
 
-            if (closedList.contains(square) == false){
+            if (closedList.contains(square) == false && openList.contains(square) == false){
                 currentSquare.addNeighbor(square);
                 openList.add(square);
             }
@@ -117,7 +117,7 @@ public class Process {
             int hCost = findHCost(currentRow - 1, currentColumn - 1);
             int totalCost = gCost + hCost;
             Square square = new Square(currentRow - 1, currentColumn - 1, currentSquare, gCost, hCost, totalCost);
-            if (closedList.contains(square) == false){
+            if (closedList.contains(square) == false && openList.contains(square) == false){
                 currentSquare.addNeighbor(square);
                 openList.add(square);
             }
@@ -128,7 +128,7 @@ public class Process {
             int hCost = findHCost(currentRow - 1, currentColumn + 1);
             int totalCost = gCost + hCost;
             Square square = new Square(currentRow - 1, currentColumn + 1, currentSquare, gCost, hCost, totalCost);
-            if (closedList.contains(square) == false){
+            if (closedList.contains(square) == false && openList.contains(square) == false){
                 currentSquare.addNeighbor(square);
                 openList.add(square);
             }
@@ -139,7 +139,7 @@ public class Process {
             int hCost = findHCost(currentRow + 1, currentColumn - 1);
             int totalCost = gCost + hCost;
             Square square = new Square(currentRow + 1, currentColumn - 1, currentSquare, gCost, hCost, totalCost);
-            if (closedList.contains(square) == false){
+            if (closedList.contains(square) == false && openList.contains(square) == false){
                 currentSquare.addNeighbor(square);
                 openList.add(square);
             }
@@ -150,7 +150,7 @@ public class Process {
             int hCost = findHCost(currentRow + 1, currentColumn + 1);
             int totalCost = gCost + hCost;
             Square square = new Square(currentRow + 1, currentColumn + 1, currentSquare, gCost, hCost, totalCost);
-            if (closedList.contains(square) == false){
+            if (closedList.contains(square) == false && openList.contains(square) == false){
                 currentSquare.addNeighbor(square);
                 openList.add(square);
             }
@@ -171,20 +171,20 @@ public class Process {
     //TODO
     public Square chooseNewSquare(){
         Square next = new Square();
-        for (Square s: currentSquare.getNeighbors()){
-            if (openList.contains(s)) {
-                if (next.getTotalCost() > s.getTotalCost()){
-                    next = s;
-                } else if (next.getTotalCost() == s.getTotalCost()){
-                    if (next.getRoww() > s.getRoww()){
-                        next = s;
-                    } else if (next.getColl() > s.getColl()){
-                        next = s;
-                    }
-                }
+        next = openList.get(0);
+        for (Square s: openList){
+            if (next.getTotalCost() > s.getTotalCost()){
+                next = s;
             }
         }
+        changeCurrent(next);
         return next;
+    }
+
+    public void changeCurrent(Square square){
+        this.currentSquare = square;
+        deleteFromOpenList(square);
+        addToClosedList();
     }
 
     public int findHCost(int row, int col){

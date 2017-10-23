@@ -16,14 +16,14 @@ public class Manhattan extends Process{
         findSomething('P'); // done; findEnd
         setStart();
         //add to closed list
+        deleteFromOpenList(start);
         int i = 0;
-        while (i != 15){
-            addToClosedList(); //done
+        while (i != 20){
+            addToClosedList();//done
             //find adjacent
             findAdjacent(); //done
             //choose new current square
             super.currentSquare = chooseNewSquare(); //done
-            deleteFromOpenList(super.currentSquare);
             //print new Square check
              System.out.println("new square: ");
             super.currentSquare.printStats();
