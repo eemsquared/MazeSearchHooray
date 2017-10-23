@@ -61,7 +61,7 @@ public class Process {
         int currentColumn = currentSquare.getColl();
         //UP
         if (charMaze[currentRow-1][currentColumn] == ' ') {
-            int gCost = currentSquare.getgCost() + 10;
+            int gCost = currentSquare.getgCost() + 1;
             int hCost = findHCost(currentRow - 1, currentColumn);
             int totalCost = gCost + hCost;
             Square square = new Square(currentRow - 1, currentColumn, currentSquare, gCost, hCost, totalCost);
@@ -74,7 +74,7 @@ public class Process {
         }
         //DOWN
         if (charMaze[currentRow+1][currentColumn] == ' ') {
-            int gCost = currentSquare.getgCost() + 10;
+            int gCost = currentSquare.getgCost() + 1;
             int hCost = findHCost(currentRow + 1, currentColumn);
             int totalCost = gCost + hCost;
             Square square = new Square(currentRow + 1, currentColumn, currentSquare, gCost, hCost, totalCost);
@@ -87,7 +87,7 @@ public class Process {
         }
         //LEFT
         if (charMaze[currentRow][currentColumn-1] == ' ') {
-            int gCost = currentSquare.getgCost() + 10;
+            int gCost = currentSquare.getgCost() + 1;
             int hCost = findHCost(currentRow, currentColumn-1);
             int totalCost = gCost + hCost;
             Square square = new Square(currentRow, currentColumn-1, currentSquare, gCost, hCost, totalCost);
@@ -100,7 +100,7 @@ public class Process {
         }
         //RIGHT
         if (charMaze[currentRow][currentColumn+1] == ' ') {
-            int gCost = currentSquare.getgCost() + 10;
+            int gCost = currentSquare.getgCost() + 1;
             int hCost = findHCost(currentRow, currentColumn+1);
             int totalCost = gCost + hCost;
             Square square = new Square(currentRow, currentColumn + 1, currentSquare, gCost, hCost, totalCost);
@@ -111,56 +111,11 @@ public class Process {
             }
 
         }
-        //DIAGONAL UPPER LEFT
-        if (charMaze[currentRow-1][currentColumn-1] == ' ') {
-            int gCost = currentSquare.getgCost() + 14;
-            int hCost = findHCost(currentRow - 1, currentColumn - 1);
-            int totalCost = gCost + hCost;
-            Square square = new Square(currentRow - 1, currentColumn - 1, currentSquare, gCost, hCost, totalCost);
-            if (closedList.contains(square) == false && openList.contains(square) == false){
-                currentSquare.addNeighbor(square);
-                openList.add(square);
-            }
-        }
-        //DIAGONAL UPPER RIGHT
-        if (charMaze[currentRow-1][currentColumn+1] == ' ') {
-            int gCost = currentSquare.getgCost() + 14;
-            int hCost = findHCost(currentRow - 1, currentColumn + 1);
-            int totalCost = gCost + hCost;
-            Square square = new Square(currentRow - 1, currentColumn + 1, currentSquare, gCost, hCost, totalCost);
-            if (closedList.contains(square) == false && openList.contains(square) == false){
-                currentSquare.addNeighbor(square);
-                openList.add(square);
-            }
-        }
-        //DIAGONAL LOWER LEFT
-        if (charMaze[currentRow+1][currentColumn-1] == ' ') {
-            int gCost = currentSquare.getgCost() + 14;
-            int hCost = findHCost(currentRow + 1, currentColumn - 1);
-            int totalCost = gCost + hCost;
-            Square square = new Square(currentRow + 1, currentColumn - 1, currentSquare, gCost, hCost, totalCost);
-            if (closedList.contains(square) == false && openList.contains(square) == false){
-                currentSquare.addNeighbor(square);
-                openList.add(square);
-            }
-        }
-        //DIAGONAL LOWER RIGHT
-        if (charMaze[currentRow+1][currentColumn+1] == ' ') {
-            int gCost = currentSquare.getgCost() + 14;
-            int hCost = findHCost(currentRow + 1, currentColumn + 1);
-            int totalCost = gCost + hCost;
-            Square square = new Square(currentRow + 1, currentColumn + 1, currentSquare, gCost, hCost, totalCost);
-            if (closedList.contains(square) == false && openList.contains(square) == false){
-                currentSquare.addNeighbor(square);
-                openList.add(square);
-            }
-        }
-
 
         //check
         System.out.println("Neighbors: ");
         for (Square s: currentSquare.getNeighbors()){
-            System.out.println("ksdfkj");
+            //System.out.println("ksdfkj");
             s.printStats();
         }
 
@@ -173,8 +128,8 @@ public class Process {
         int currentColumn = currentSquare.getColl();
         //UP
         if (charMaze[currentRow-1][currentColumn] == ' ') {
-            int gCost = currentSquare.getgCost() + 10;
-            int hCost = findHCost(currentRow - 1, currentColumn);
+            int gCost = currentSquare.getgCost() + 1;
+            int hCost = findHCostStraight(currentRow - 1, currentColumn);
             int totalCost = gCost + hCost;
             Square square = new Square(currentRow - 1, currentColumn, currentSquare, gCost, hCost, totalCost);
 
@@ -186,8 +141,8 @@ public class Process {
         }
         //DOWN
         if (charMaze[currentRow+1][currentColumn] == ' ') {
-            int gCost = currentSquare.getgCost() + 10;
-            int hCost = findHCost(currentRow + 1, currentColumn);
+            int gCost = currentSquare.getgCost() + 1;
+            int hCost = findHCostStraight(currentRow + 1, currentColumn);
             int totalCost = gCost + hCost;
             Square square = new Square(currentRow + 1, currentColumn, currentSquare, gCost, hCost, totalCost);
 
@@ -199,8 +154,8 @@ public class Process {
         }
         //LEFT
         if (charMaze[currentRow][currentColumn-1] == ' ') {
-            int gCost = currentSquare.getgCost() + 10;
-            int hCost = findHCost(currentRow, currentColumn-1);
+            int gCost = currentSquare.getgCost() + 1;
+            int hCost = findHCostStraight(currentRow, currentColumn-1);
             int totalCost = gCost + hCost;
             Square square = new Square(currentRow, currentColumn-1, currentSquare, gCost, hCost, totalCost);
 
@@ -212,8 +167,8 @@ public class Process {
         }
         //RIGHT
         if (charMaze[currentRow][currentColumn+1] == ' ') {
-            int gCost = currentSquare.getgCost() + 10;
-            int hCost = findHCost(currentRow, currentColumn+1);
+            int gCost = currentSquare.getgCost() + 1;
+            int hCost = findHCostStraight(currentRow, currentColumn+1);
             int totalCost = gCost + hCost;
             Square square = new Square(currentRow, currentColumn + 1, currentSquare, gCost, hCost, totalCost);
 
@@ -241,7 +196,7 @@ public class Process {
         //System.out.println("next");
         //next.printStats();
         for (Square s: openList){
-            if (next.getTotalCost() > s.getTotalCost()){
+            if (next.getTotalCost() >= s.getTotalCost()){
                 next = s;
             }
         }
@@ -260,7 +215,17 @@ public class Process {
     public int findHCost(int row, int col){
         //abs(row index of start location - row index of goal) + abs(column index of starting - column of goal)
 
-        return Math.abs((row - end.getRoww())+ (col - end.getColl())) * 10;
+        return (Math.abs(row - end.getRoww())+ Math.abs(col - end.getColl()));
+    }
+
+    public int findHCostStraight(int row, int col){
+        int dx;
+        int dy;
+
+        dx = Math.abs((row - end.getRoww()));
+        dy = Math.abs((col - end.getColl()));
+
+        return Math.max(dx,dy);
     }
 }
 
