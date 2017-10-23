@@ -25,6 +25,10 @@ public class Process {
         openList = new ArrayList<>();
     }
 
+    public void setStart(){
+        currentSquare = start;
+    }
+
     public void findSomething(char findThis){
         int row = maze.getRowSize();
         int col = maze.getColSize();
@@ -52,79 +56,104 @@ public class Process {
     }
 
     public void findAdjacent() {
+
         int currentRow = currentSquare.getRoww();
         int currentColumn = currentSquare.getColl();
         //UP
-        if (charMaze[currentRow-1][currentColumn] != '%') {
+        if (charMaze[currentRow-1][currentColumn] == ' ') {
             int gCost = currentSquare.getgCost() + 10;
             int hCost = findHCost(currentRow - 1, currentColumn);
             int totalCost = gCost + hCost;
             Square square = new Square(currentRow - 1, currentColumn, currentSquare, gCost, hCost, totalCost);
-            currentSquare.addNeighbor(square);
-            openList.add(square);
+
+            if (closedList.contains(square) == false){
+                currentSquare.addNeighbor(square);
+                openList.add(square);
+            }
+
         }
         //DOWN
-        if (charMaze[currentRow+1][currentColumn] != '%') {
+        if (charMaze[currentRow+1][currentColumn] == ' ') {
             int gCost = currentSquare.getgCost() + 10;
             int hCost = findHCost(currentRow + 1, currentColumn);
             int totalCost = gCost + hCost;
             Square square = new Square(currentRow + 1, currentColumn, currentSquare, gCost, hCost, totalCost);
-            currentSquare.addNeighbor(square);
-            openList.add(square);
+
+            if (closedList.contains(square) == false){
+                currentSquare.addNeighbor(square);
+                openList.add(square);
+            }
+
         }
         //LEFT
-        if (charMaze[currentRow][currentColumn-1] != '%') {
+        if (charMaze[currentRow][currentColumn-1] == ' ') {
             int gCost = currentSquare.getgCost() + 10;
             int hCost = findHCost(currentRow, currentColumn-1);
             int totalCost = gCost + hCost;
             Square square = new Square(currentRow, currentColumn-1, currentSquare, gCost, hCost, totalCost);
-            currentSquare.addNeighbor(square);
-            openList.add(square);
+
+            if (closedList.contains(square) == false){
+                currentSquare.addNeighbor(square);
+                openList.add(square);
+            }
+
         }
         //RIGHT
-        if (charMaze[currentRow][currentColumn+1] != '%') {
+        if (charMaze[currentRow][currentColumn+1] == ' ') {
             int gCost = currentSquare.getgCost() + 10;
             int hCost = findHCost(currentRow, currentColumn+1);
             int totalCost = gCost + hCost;
             Square square = new Square(currentRow, currentColumn + 1, currentSquare, gCost, hCost, totalCost);
-            currentSquare.addNeighbor(square);
-            openList.add(square);
+
+            if (closedList.contains(square) == false){
+                currentSquare.addNeighbor(square);
+                openList.add(square);
+            }
+
         }
         //DIAGONAL UPPER LEFT
-        if (charMaze[currentRow-1][currentColumn-1] != '%') {
+        if (charMaze[currentRow-1][currentColumn-1] == ' ') {
             int gCost = currentSquare.getgCost() + 14;
             int hCost = findHCost(currentRow - 1, currentColumn - 1);
             int totalCost = gCost + hCost;
             Square square = new Square(currentRow - 1, currentColumn - 1, currentSquare, gCost, hCost, totalCost);
-            currentSquare.addNeighbor(square);
-            openList.add(square);
+            if (closedList.contains(square) == false){
+                currentSquare.addNeighbor(square);
+                openList.add(square);
+            }
         }
         //DIAGONAL UPPER RIGHT
-        if (charMaze[currentRow-1][currentColumn+1] != '%') {
+        if (charMaze[currentRow-1][currentColumn+1] == ' ') {
             int gCost = currentSquare.getgCost() + 14;
             int hCost = findHCost(currentRow - 1, currentColumn + 1);
             int totalCost = gCost + hCost;
             Square square = new Square(currentRow - 1, currentColumn + 1, currentSquare, gCost, hCost, totalCost);
-            currentSquare.addNeighbor(square);
-            openList.add(square);
+            if (closedList.contains(square) == false){
+                currentSquare.addNeighbor(square);
+                openList.add(square);
+            }
         }
         //DIAGONAL LOWER LEFT
-        if (charMaze[currentRow+1][currentColumn-1] != '%') {
+        if (charMaze[currentRow+1][currentColumn-1] == ' ') {
             int gCost = currentSquare.getgCost() + 14;
             int hCost = findHCost(currentRow + 1, currentColumn - 1);
             int totalCost = gCost + hCost;
             Square square = new Square(currentRow + 1, currentColumn - 1, currentSquare, gCost, hCost, totalCost);
-            currentSquare.addNeighbor(square);
-            openList.add(square);
+            if (closedList.contains(square) == false){
+                currentSquare.addNeighbor(square);
+                openList.add(square);
+            }
         }
         //DIAGONAL LOWER RIGHT
-        if (charMaze[currentRow+1][currentColumn+1] != '%') {
+        if (charMaze[currentRow+1][currentColumn+1] == ' ') {
             int gCost = currentSquare.getgCost() + 14;
             int hCost = findHCost(currentRow + 1, currentColumn + 1);
             int totalCost = gCost + hCost;
             Square square = new Square(currentRow + 1, currentColumn + 1, currentSquare, gCost, hCost, totalCost);
-            currentSquare.addNeighbor(square);
-            openList.add(square);
+            if (closedList.contains(square) == false){
+                currentSquare.addNeighbor(square);
+                openList.add(square);
+            }
         }
 
         //check

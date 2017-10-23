@@ -16,7 +16,7 @@ public class Main {
 			System.out.println();
 		}
 		Manhattan manhattan = new Manhattan(file);
-		manhattan.process();
+		manhattan.processMaze();
 
 	}
 

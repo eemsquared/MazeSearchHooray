@@ -11,22 +11,22 @@ public class Manhattan extends Process{
         super(maze);
     }
 
-    public void process() {
+    public void processMaze() {
         findSomething('.'); //done; findStart
         findSomething('P'); // done; findEnd
-        currentSquare = start;
+        setStart();
         //add to closed list
         int i = 0;
         while (i != 15){
             addToClosedList(); //done
             //find adjacent
-            findAdjacent(); //done
+//            findAdjacent(); //done
             //choose new current square
-            currentSquare = chooseNewSquare(); //done
-            deleteFromOpenList(currentSquare);
+//            super.currentSquare = chooseNewSquare(); //done
+//            deleteFromOpenList(super.currentSquare);
             //print new Square check
-            System.out.println("new square: ");
-            currentSquare.printStats();
+//            System.out.println("new square: ");
+//            super.currentSquare.printStats();
             i++;
         }
     }
