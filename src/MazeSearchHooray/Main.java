@@ -17,6 +17,11 @@ public class Main {
 		}
 		Manhattan manhattan = new Manhattan(file);
 		manhattan.processMaze();
+        System.out.println();
+        System.out.println("-------------------------------------------");
+        System.out.println();
+        StraightLine straightLine = new StraightLine(file);
+		straightLine.processMaze();
 
 	}
 
