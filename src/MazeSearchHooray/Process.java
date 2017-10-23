@@ -35,12 +35,12 @@ public class Process {
         for (int roww = 0, coll = 0; roww < row; roww++){
             for (coll = 0; coll < col; coll++){
                 if (charMaze[roww][coll] == findThis){
-                    if (findThis == '.') {
+                    if (findThis == 'P') {
                         Square newStart = new Square(roww, coll, null, 0, 0, 0);
                         this.start = newStart;
                         System.out.print("START: ");
                         start.printStats();
-                    }else if (findThis == 'P') {
+                    }else if (findThis == '.') {
                         Square newEnd = new Square(roww, coll, null, 0, 0, 0);
                         this.end = newEnd;
                         System.out.print("END: ");
@@ -160,8 +160,11 @@ public class Process {
         //check
         System.out.println("Neighbors: ");
         for (Square s: currentSquare.getNeighbors()){
+            System.out.println("ksdfkj");
             s.printStats();
         }
+
+
 
     }
 
@@ -234,14 +237,17 @@ public class Process {
 
     //TODO
     public Square chooseNewSquare(){
-        Square next = new Square();
-        next = openList.get(0);
+        Square next = openList.get(0);
+        //System.out.println("next");
+        //next.printStats();
         for (Square s: openList){
             if (next.getTotalCost() > s.getTotalCost()){
                 next = s;
             }
         }
         changeCurrent(next);
+        System.out.println("mm");
+        next.printStats();
         return next;
     }
 

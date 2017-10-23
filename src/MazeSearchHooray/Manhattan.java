@@ -12,8 +12,8 @@ public class Manhattan extends Process{
     }
 
     public void processMaze() {
-        findSomething('.'); //done; findStart
-        findSomething('P'); // done; findEnd
+        findSomething('P'); //done; findStart
+        findSomething('.'); // done; findEnd
         setStart();
         //add to closed list
         deleteFromOpenList(start);
