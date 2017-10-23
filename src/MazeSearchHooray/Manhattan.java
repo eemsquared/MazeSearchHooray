@@ -20,13 +20,13 @@ public class Manhattan extends Process{
         while (i != 15){
             addToClosedList(); //done
             //find adjacent
-//            findAdjacent(); //done
+            findAdjacent(); //done
             //choose new current square
-//            super.currentSquare = chooseNewSquare(); //done
-//            deleteFromOpenList(super.currentSquare);
+            super.currentSquare = chooseNewSquare(); //done
+            deleteFromOpenList(super.currentSquare);
             //print new Square check
-//            System.out.println("new square: ");
-//            super.currentSquare.printStats();
+             System.out.println("new square: ");
+            super.currentSquare.printStats();
             i++;
         }
     }
