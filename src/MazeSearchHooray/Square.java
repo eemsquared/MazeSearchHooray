@@ -3,94 +3,73 @@ package MazeSearchHooray;
 import java.util.ArrayList;
 
 public class Square {
+    private int row;
+    private int col;
 
-    private int roww;
-    private int coll;
+    private Square parent;
+
     private int gCost;
     private int hCost;
     private int totalCost;
-    private Square parent;
-    private ArrayList<Square> neighbors = new ArrayList<>();
 
     public Square(){
         //constructor
-        roww = 0;
-        coll = 0;
-        gCost = 0;
-        hCost = 0;
-        totalCost = 0;
-        parent = null;
     }
 
-    public Square(int x, int y, Square parent, int gCost, int hCost, int totalCost){
-        //location
-        this.roww = x;
-        this.coll = y;
-        //parent
-        this.parent = parent;
-        //cost
-        this.gCost = gCost;
-        this.hCost = hCost;
-        this.totalCost = totalCost;
-
-        /*
-        if (parent != null)
-            this.gCost = parent.getgCost() + partialCost;
-        else
-            this.gCost = 0;
-        */
+    public Square(int row, int col){
+        this.row = row;
+        this.col = col;
     }
 
-    public void printStats(){
-        System.out.println("Row: "+roww+"\nColumn: "+coll+"\nG(x): "+gCost+"\nH(x): "+hCost+"\nTotal Cost: "+totalCost);
-        if (parent != null){
-            System.out.println("Parent: "+parent.getRoww()+", "+parent.getColl());
-        }
-    }
-    public ArrayList<Square> getNeighbors(){
-        return neighbors;
+    public int getRow() {
+        return row;
     }
 
-    public void setTotalCost(int totalCost){
-        this.totalCost = totalCost;
+    public void setRow(int row) {
+        this.row = row;
     }
 
-    public void setRoww(int roww){
-        this.roww = roww;
+    public int getCol() {
+        return col;
     }
 
-    public void setColl(int coll){
-        this.coll = coll;
+    public void setCol(int col) {
+        this.col = col;
     }
 
-    public void setParent(Square parent){
-        this.parent = parent;
-    }
-
-    public int getRoww(){
-        return roww;
-    }
-
-    public int getColl(){
-        return coll;
-    }
-
-    public int getgCost(){
-        return gCost;
-    }
-
-    public int getTotalCost(){
-        return totalCost;
-    }
-
-    public void addNeighbor(Square neighbor){
-        neighbors.add(neighbor);
-    }
-
-    public Square getParent(){
+    public Square getParent() {
         return parent;
     }
 
+    public void setParent(Square parent) {
+        this.parent = parent;
+    }
 
+    public int getgCost() {
+        return gCost;
+    }
 
+    public void setgCost(int gCost) {
+        this.gCost = gCost;
+    }
+
+    public int gethCost() {
+        return hCost;
+    }
+
+    public void sethCost(int hCost) {
+        this.hCost = hCost;
+    }
+
+    public int getTotalCost() {
+        return totalCost;
+    }
+
+    public void setTotalCost(int totalCost) {
+        this.totalCost = totalCost;
+    }
+
+    public void printStats(){
+        System.out.println("Row: "+getRow()+"\nColumn: "+getCol()+"\nG(x): "+getgCost()+"\nH(x): "+gethCost()+"\nTotal cost: "+getTotalCost());
+    }
 }

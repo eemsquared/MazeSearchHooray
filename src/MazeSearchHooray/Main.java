@@ -5,7 +5,7 @@ public class Main {
 	public static void main(String[] args) {
 		
 		Maze file = new Maze();
-		char[][] arrayFile = file.getArrayFile("smallMaze.txt");
+		char[][] arrayFile = file.getArrayFile("mediumMaze.txt");
 		int row = file.getRowSize();
 		int col = file.getColSize();
 
@@ -15,13 +15,37 @@ public class Main {
 			}
 			System.out.println();
 		}
-		//Manhattan manhattan = new Manhattan(file);
-        //manhattan.processMaze();
-        System.out.println();
-        System.out.println("-------------------------------------------");
-        System.out.println();
-        StraightLine straightLine = new StraightLine(file);
-		straightLine.processMaze();
+		/*Manhattan manhattan = new Manhattan(arrayFile, row, col);
+		manhattan.findStart();
+		System.out.println();
+		manhattan.findGoal();
+
+		while (manhattan.goalNotFound()){
+			manhattan.findNeighbors();
+			manhattan.chooseNewSquare();
+		}
+
+		int size = manhattan.getClosedListSize();
+		System.out.println("\nClosed List size: " + size);
+
+		int openList_size = straight.getOpenListSize();
+		System.out.println("Open List size: " + openList_size);*/
+
+		StraightLine straight = new StraightLine (arrayFile, row, col);
+		straight.findStart();
+		System.out.println();
+		straight.findGoal();
+
+		while (straight.goalNotFound()){
+			straight.findNeighbors();
+			straight.chooseNewSquare();
+		}
+
+		int closedList_size = straight.getClosedListSize();
+		System.out.println("\nClosed List size: " + closedList_size);
+
+		int openList_size = straight.getOpenListSize();
+		System.out.println("Open List size: " + openList_size);
 
 	}
 
