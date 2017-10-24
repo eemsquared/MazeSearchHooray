@@ -32,6 +32,7 @@ public class Square {
         this.gCost = gCost;
         this.hCost = hCost;
         this.totalCost = totalCost;
+
         /*
         if (parent != null)
             this.gCost = parent.getgCost() + partialCost;
